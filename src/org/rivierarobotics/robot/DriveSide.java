@@ -8,11 +8,11 @@ public class DriveSide {
 	
 	public DriveSide(boolean isLeft) {
 		if(isLeft) {
-			motor1 = new WPI_TalonSRX(1);
-			motor2 = new WPI_TalonSRX(2);
+			motor1 = new WPI_TalonSRX(RobotMap.TALON_LEFT_1);
+			motor2 = new WPI_TalonSRX(RobotMap.TALON_LEFT_2);
 		} else {
-			motor1 = new WPI_TalonSRX(3);
-			motor2 = new WPI_TalonSRX(6);
+			motor1 = new WPI_TalonSRX(RobotMap.TALON_RIGHT_1);
+			motor2 = new WPI_TalonSRX(RobotMap.TALON_RIGHT_2);
 			motor1.setInverted(true);
 			motor2.setInverted(true);
 		}
