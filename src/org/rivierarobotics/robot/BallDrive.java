@@ -2,19 +2,19 @@ package org.rivierarobotics.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.Solenoid;
-
 public class BallDrive {
 	private static WPI_TalonSRX feeder;
-	private static Solenoid shooter;
+	private static WPI_TalonSRX shooter;
 	
 	public BallDrive() {
 		feeder = new WPI_TalonSRX(RobotMap.FEEDER_WHEEL);
-		shooter = new Solenoid(RobotMap.SHOOTER_WHEEL);
+		shooter = new WPI_TalonSRX(RobotMap.SHOOTER_WHEEL);
 	}
 	
-	public static void setPower(double pwr, boolean on) {
-		feeder.set(pwr);
-		shooter.set(on);
+	public void setPower(double f_pwr, double s_pwr) {
+		feeder.set(f_pwr);
+		shooter.set(s_pwr);
 	}
+	
+	//convert to drivetrain class, make "driveside" class and copy style of drivetrain
 }
