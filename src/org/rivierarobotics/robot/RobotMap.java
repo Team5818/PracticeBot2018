@@ -1,8 +1,11 @@
 package org.rivierarobotics.robot;
 
 public class RobotMap {
-	public static final int FEEDER_WHEEL = 7;
-	public static final int SHOOTER_WHEEL = 8;
+	public static final int FEEDER_WHEEL_L = 7;
+	public static final int SHOOTER_WHEEL_L = 8;
+	public static final int FEEDER_WHEEL_R = 5;
+	public static final int SHOOTER_WHEEL_R = 4;
+	
 	public static final int SHOOTER_BUTTON = 1;
 	public static final double SHOOTER_POWER = 0.6;
 	
