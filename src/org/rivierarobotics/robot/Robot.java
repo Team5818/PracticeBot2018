@@ -23,8 +23,8 @@ public class Robot extends IterativeRobot {
 		double inputX_right = joystick_right.getX();
 		double inputY_left = joystick_left.getY();
 		double throttle_right = joystick_right.getThrottle();
-		boolean shoot_act = false;
 		boolean shoot_joy_read = joystick_right.getRawButton(RobotMap.SHOOTER_BUTTON);
+		boolean shoot_act = false;
 		
 		//toggle for shooter wheel
 		if(shoot_joy_read && !shoot_act) {
@@ -34,22 +34,28 @@ public class Robot extends IterativeRobot {
 		}
 		
 		//temp deadband, replace with vector deadband
-		if(Math.abs(inputX_right) <= 0.15)
+		if(Math.abs(inputX_right) <= RobotMap.DRIVE_DEADBAND) {
 			inputX_right = 0;
-		if(Math.abs(inputY_left) <= 0.15)
+		} else {
+			inputX_right *= RobotMap.DRIVE_PWR_MULT;
+		}
+		if(Math.abs(inputY_left) <= RobotMap.DRIVE_DEADBAND) {
 			inputY_left = 0;
+		} else {
+			inputY_left *= RobotMap.DRIVE_PWR_MULT;
+		}
 
 		driveTrain.setArcade(inputX_right, inputY_left);
 		
-		//decides which values to push to respective motors
+		//throttle deadband (for ball propulsion)
 		if(shoot_act) {
-			if(throttle_right > 0.0){
+			if(throttle_right >= RobotMap.FEEDER_DEADBAND){
 				ballDrive.setPower(throttle_right, RobotMap.SHOOTER_POWER);
 			} else {
 				ballDrive.setPower(0.0, RobotMap.SHOOTER_POWER);
 			}
 		} else {
-			if(throttle_right > 0.0) {
+			if(throttle_right >= RobotMap.FEEDER_DEADBAND) {
 				ballDrive.setPower(throttle_right, 0.0);
 			} else {
 				ballDrive.setPower(0.0, 0.0);

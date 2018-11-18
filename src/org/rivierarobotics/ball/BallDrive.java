@@ -1,16 +1,16 @@
 package org.rivierarobotics.ball;
 
 public class BallDrive {
-	private BallSide left;
-	private BallSide right;
+	private BallSide feeder;
+	private BallSide shooter;
 	
 	public BallDrive() {
-		left = new BallSide(true);
-		right = new BallSide(false);
+		feeder = new BallSide(true);
+		shooter = new BallSide(false);
 	}
 	
 	public void setPower(double f_pwr, double s_pwr) {
-		left.setPower(f_pwr);
-		right.setPower(s_pwr);
+		feeder.setPower(f_pwr);
+		shooter.setPower(s_pwr);
 	}
 }
