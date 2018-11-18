@@ -1,5 +1,6 @@
-package org.rivierarobotics.robot;
+package org.usfirst.frc.team5818.robot.drive;
 
+import org.usfirst.frc.team5818.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class DriveSide {

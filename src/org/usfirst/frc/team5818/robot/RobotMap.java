@@ -1,4 +1,4 @@
-package org.rivierarobotics.robot;
+package org.usfirst.frc.team5818.robot;
 
 public class RobotMap {
 	public static final int FEEDER_WHEEL_L = 7;

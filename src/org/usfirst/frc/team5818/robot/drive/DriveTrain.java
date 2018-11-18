@@ -1,4 +1,4 @@
-package org.rivierarobotics.robot;
+package org.usfirst.frc.team5818.robot.drive;
 
 public class DriveTrain {
 	private DriveSide left;

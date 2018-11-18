@@ -1,6 +1,7 @@
-package org.rivierarobotics.robot;
+package org.usfirst.frc.team5818.robot;
 
-import org.rivierarobotics.ball.BallDrive;
+import org.usfirst.frc.team5818.robot.ball.BallDrive;
+import org.usfirst.frc.team5818.robot.drive.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 

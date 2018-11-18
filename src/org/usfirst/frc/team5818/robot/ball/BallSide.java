@@ -1,6 +1,6 @@
-package org.rivierarobotics.ball;
+package org.usfirst.frc.team5818.robot.ball;
 
-import org.rivierarobotics.robot.RobotMap;
+import org.usfirst.frc.team5818.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 public class BallSide {
