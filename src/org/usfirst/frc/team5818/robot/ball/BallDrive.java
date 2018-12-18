@@ -4,14 +4,9 @@ public class BallDrive {
 	private Feeder feeder;
 	private Shooter shooter;
 	
-	public BallDrive(boolean isLeft) {
-		if(isLeft) {
-			feeder = new Feeder();
-			shooter = new Shooter();
-		} else {
-			feeder = new Feeder();
-			shooter = new Shooter();
-		}
+	public BallDrive() {
+		feeder = new Feeder();
+		shooter = new Shooter();
 	}
 	
 	public void setPower(double f_pwr, double b_pwr) {

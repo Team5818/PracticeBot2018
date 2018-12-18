@@ -9,8 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class Robot extends IterativeRobot {
 	private DriveTrain driveTrain;
-	private BallDrive ballDriveL;
-	private BallDrive ballDriveR;
+	private BallDrive ballDriveF;
+	private BallDrive ballDriveS;
 	private Joystick joystick_right;
 	private Joystick joystick_left;
 	
@@ -19,8 +19,8 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		joystick_right = new Joystick(RobotMap.JOYSTICK_0);
 		joystick_left = new Joystick(RobotMap.JOYSTICK_1);
-		ballDriveL = new BallDrive(true);
-		ballDriveR = new BallDrive(false);
+		ballDriveF = new BallDrive();
+		ballDriveS = new BallDrive();
 	}
 	
 	@Override
@@ -28,15 +28,9 @@ public class Robot extends IterativeRobot {
 		double inputX_right = joystick_right.getX();
 		double inputY_left = joystick_left.getY();
 		double throttle_right = joystick_right.getThrottle();
-		boolean shoot_joy_read = joystick_right.getRawButton(RobotMap.SHOOTER_BUTTON);
+		boolean shoot_joy_read = joystick_right.getRawButton(RobotMap.FEEDER_BUTTON);
 		boolean shoot_act = false;
-		
-		//toggle for shooter wheel
-		if(shoot_joy_read && !shoot_act) {
-			shoot_act = true;
-		} else if(shoot_joy_read && shoot_act) {
-			shoot_act = false;
-		}
+		double fl_pwr = 0, fr_pwr = 0, sl_pwr = 0, sr_pwr = 0;
 		
 		//temp deadband, replace with vector deadband
 		if(Math.abs(inputX_right) <= RobotMap.DRIVE_DEADBAND) {
@@ -49,24 +43,32 @@ public class Robot extends IterativeRobot {
 		} else {
 			inputY_left *= RobotMap.DRIVE_PWR_MULT;
 		}
-
 		driveTrain.setArcade(inputX_right, inputY_left);
 		
+		//toggle for shooter wheel
+		/*if(shoot_joy_read && !shoot_act) {
+			shoot_act = true;
+		} else if(shoot_joy_read && shoot_act) {
+			shoot_act = false;
+		}*/
+		
 		//throttle deadband (for ball propulsion)
-		if(shoot_act) {
-			if(throttle_right >= RobotMap.FEEDER_DEADBAND){
-				
-			} else {
-				
-			}
+		if(throttle_right >= RobotMap.SHOOTER_DEADBAND){
+			sl_pwr = throttle_right;
+			sr_pwr = throttle_right;
 		} else {
-			if(throttle_right >= RobotMap.FEEDER_DEADBAND) {
-				
-			} else {
-				
-			}
+			sl_pwr = 0;
+			sr_pwr = 0;
 		}
-		ballDriveL.setPower();
+		if(shoot_joy_read) {
+			fl_pwr = RobotMap.FEEDER_POWER;
+			fr_pwr = RobotMap.FEEDER_POWER;
+		} else {
+			fl_pwr = 0;
+			fr_pwr = 0;
+		}
+		ballDriveF.setPower(fl_pwr, fr_pwr);
+		ballDriveS.setPower(sl_pwr, sr_pwr);
 		
 	}
 }

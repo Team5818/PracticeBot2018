@@ -8,8 +8,8 @@ public class Shooter {
 	private WPI_TalonSRX motorR;
 	
 	public Shooter() {
-		motorL = new WPI_TalonSRX(RobotMap.FEEDER_WHEEL_L);
-		motorR = new WPI_TalonSRX(RobotMap.FEEDER_WHEEL_R);
+		motorL = new WPI_TalonSRX(RobotMap.SHOOTER_WHEEL_L);
+		motorR = new WPI_TalonSRX(RobotMap.SHOOTER_WHEEL_R);
 		motorL.setInverted(true);
 	}
 	
