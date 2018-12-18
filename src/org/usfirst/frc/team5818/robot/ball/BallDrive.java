@@ -1,16 +1,21 @@
 package org.usfirst.frc.team5818.robot.ball;
 
 public class BallDrive {
-	private BallSide feeder;
-	private BallSide shooter;
+	private Feeder feeder;
+	private Shooter shooter;
 	
-	public BallDrive() {
-		feeder = new BallSide(true);
-		shooter = new BallSide(false);
+	public BallDrive(boolean isLeft) {
+		if(isLeft) {
+			feeder = new Feeder();
+			shooter = new Shooter();
+		} else {
+			feeder = new Feeder();
+			shooter = new Shooter();
+		}
 	}
 	
-	public void setPower(double f_pwr, double s_pwr) {
-		feeder.setPower(f_pwr);
-		shooter.setPower(s_pwr);
+	public void setPower(double f_pwr, double b_pwr) {
+		feeder.setPower(f_pwr, b_pwr);
+		shooter.setPower(f_pwr, b_pwr);
 	}
 }

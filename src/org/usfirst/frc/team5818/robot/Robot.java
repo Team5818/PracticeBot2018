@@ -1,13 +1,16 @@
 package org.usfirst.frc.team5818.robot;
 
 import org.usfirst.frc.team5818.robot.ball.BallDrive;
+import org.usfirst.frc.team5818.robot.ball.Feeder;
+import org.usfirst.frc.team5818.robot.ball.Shooter;
 import org.usfirst.frc.team5818.robot.drive.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Robot extends IterativeRobot {
 	private DriveTrain driveTrain;
-	private BallDrive ballDrive;
+	private BallDrive ballDriveL;
+	private BallDrive ballDriveR;
 	private Joystick joystick_right;
 	private Joystick joystick_left;
 	
@@ -16,7 +19,8 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		joystick_right = new Joystick(RobotMap.JOYSTICK_0);
 		joystick_left = new Joystick(RobotMap.JOYSTICK_1);
-		ballDrive = new BallDrive();
+		ballDriveL = new BallDrive(true);
+		ballDriveR = new BallDrive(false);
 	}
 	
 	@Override
@@ -51,17 +55,18 @@ public class Robot extends IterativeRobot {
 		//throttle deadband (for ball propulsion)
 		if(shoot_act) {
 			if(throttle_right >= RobotMap.FEEDER_DEADBAND){
-				ballDrive.setPower(throttle_right, RobotMap.SHOOTER_POWER);
+				
 			} else {
-				ballDrive.setPower(0.0, RobotMap.SHOOTER_POWER);
+				
 			}
 		} else {
 			if(throttle_right >= RobotMap.FEEDER_DEADBAND) {
-				ballDrive.setPower(throttle_right, 0.0);
+				
 			} else {
-				ballDrive.setPower(0.0, 0.0);
+				
 			}
 		}
+		ballDriveL.setPower();
 		
 	}
 }
