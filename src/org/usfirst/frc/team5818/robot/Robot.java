@@ -1,16 +1,13 @@
 package org.usfirst.frc.team5818.robot;
 
 import org.usfirst.frc.team5818.robot.ball.BallDrive;
-import org.usfirst.frc.team5818.robot.ball.Feeder;
-import org.usfirst.frc.team5818.robot.ball.Shooter;
 import org.usfirst.frc.team5818.robot.drive.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
 
 public class Robot extends IterativeRobot {
 	private DriveTrain driveTrain;
-	private BallDrive ballDriveF;
-	private BallDrive ballDriveS;
+	private BallDrive ballDrive;
 	private Joystick joystick_right;
 	private Joystick joystick_left;
 	
@@ -19,8 +16,7 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		joystick_right = new Joystick(RobotMap.JOYSTICK_0);
 		joystick_left = new Joystick(RobotMap.JOYSTICK_1);
-		ballDriveF = new BallDrive();
-		ballDriveS = new BallDrive();
+		ballDrive = new BallDrive();
 	}
 	
 	@Override
@@ -29,8 +25,8 @@ public class Robot extends IterativeRobot {
 		double inputY_left = joystick_left.getY();
 		double throttle_right = joystick_right.getThrottle();
 		boolean shoot_joy_read = joystick_right.getRawButton(RobotMap.FEEDER_BUTTON);
-		boolean shoot_act = false;
-		double fl_pwr = 0, fr_pwr = 0, sl_pwr = 0, sr_pwr = 0;
+		//boolean shoot_act = false;
+		double left_feed_pwr = 0, right_feed_pwr = 0, left_shoot_pwr = 0, right_shoot_pwr = 0;
 		
 		//temp deadband, replace with vector deadband
 		if(Math.abs(inputX_right) <= RobotMap.DRIVE_DEADBAND) {
@@ -54,21 +50,20 @@ public class Robot extends IterativeRobot {
 		
 		//throttle deadband (for ball propulsion)
 		if(throttle_right >= RobotMap.SHOOTER_DEADBAND){
-			sl_pwr = throttle_right;
-			sr_pwr = throttle_right;
+			left_shoot_pwr = throttle_right;
+			right_shoot_pwr = throttle_right;
 		} else {
-			sl_pwr = 0;
-			sr_pwr = 0;
+			left_shoot_pwr = 0;
+			right_shoot_pwr = 0;
 		}
 		if(shoot_joy_read) {
-			fl_pwr = RobotMap.FEEDER_POWER;
-			fr_pwr = RobotMap.FEEDER_POWER;
+			left_feed_pwr = RobotMap.FEEDER_POWER;
+			right_feed_pwr = RobotMap.FEEDER_POWER;
 		} else {
-			fl_pwr = 0;
-			fr_pwr = 0;
+			left_feed_pwr = 0;
+			right_feed_pwr = 0;
 		}
-		ballDriveF.setPower(fl_pwr, fr_pwr);
-		ballDriveS.setPower(sl_pwr, sr_pwr);
+		ballDrive.setPower(left_feed_pwr, right_feed_pwr, left_shoot_pwr, right_shoot_pwr);
 		
 	}
 }
