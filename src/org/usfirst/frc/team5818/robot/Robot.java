@@ -4,6 +4,7 @@ import org.usfirst.frc.team5818.robot.ball.BallDrive;
 import org.usfirst.frc.team5818.robot.drive.DriveTrain;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	private DriveTrain driveTrain;
@@ -17,6 +18,15 @@ public class Robot extends IterativeRobot {
 		joystick_right = new Joystick(RobotMap.JOYSTICK_0);
 		joystick_left = new Joystick(RobotMap.JOYSTICK_1);
 		ballDrive = new BallDrive();
+	}
+	@Override
+	public void disabledInit() {
+		this.driveTrain.resetDistance();
+	}
+	@Override
+	public void disabledPeriodic() {
+		
+		SmartDashboard.putNumber("AverageDistance", this.driveTrain.getAverageDistance());
 	}
 	
 	@Override

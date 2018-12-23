@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5818.robot.ball;
 
-public class BallDrive {
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class BallDrive extends Subsystem {
 	private MotorSet feeder;
 	private MotorSet shooter;
 	
@@ -12,5 +14,11 @@ public class BallDrive {
 	public void setPower(double left_feed, double right_feed, double left_shoot, double right_shoot) {
 		feeder.setPower(left_feed, right_feed);
 		shooter.setPower(left_shoot, right_shoot);
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }

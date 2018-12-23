@@ -26,4 +26,15 @@ public class DriveTrain {
 		}
 		setPower(left, right);
 	}
+	
+	public void resetDistance() {
+		this.left.setDistance(0);
+		this.right.setDistance(0);
+	}
+	
+	public double getAverageDistance() {
+		double leftDistance = this.left.getDistance();
+		double rightDistance = this.right.getDistance();
+		return (leftDistance + rightDistance)/2;
+	}
 }
