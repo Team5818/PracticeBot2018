@@ -14,14 +14,14 @@ public class DriveSide {
 		} else {
 			motorZed = new WPI_TalonSRX(RobotMap.TALON_RIGHT_ZED);
 			motorEnc = new WPI_TalonSRX(RobotMap.TALON_RIGHT_ENC);
-			motorZed.setInverted(true);
-			motorEnc.setInverted(true);
 		}
+		motorZed.setInverted(!isLeft);
+		motorEnc.setInverted(!isLeft);
 	}
 	
 	public void setPower(double pwr) {
-		motorZed.set(pwr);
-		motorEnc.set(pwr);
+		motorZed.set(-pwr);
+		motorEnc.set(-pwr);
 	}
 	
 	public void setDistance(double inches) {

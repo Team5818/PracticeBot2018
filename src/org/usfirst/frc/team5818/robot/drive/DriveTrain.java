@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5818.robot.drive;
 
-public class DriveTrain {
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class DriveTrain extends Subsystem{
 	private DriveSide left;
 	private DriveSide right;
 	
@@ -36,5 +38,11 @@ public class DriveTrain {
 		double leftDistance = this.left.getDistance();
 		double rightDistance = this.right.getDistance();
 		return (leftDistance + rightDistance)/2;
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
+		
 	}
 }
